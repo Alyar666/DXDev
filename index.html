@@ -1,1 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>DataGrid in shadowDom</title>
+
+    <link href="./shadowDom/css/dx.light.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="./shadowDom/js/dx.all.debug.js" charset="utf-8"></script>
+    <script type="text/javascript" src="./shadowDom/data.js" charset="utf-8"></script>
+</head>
+<body>
+  <div id="container"></div>
+
+  <script>
+    const createDataGrid = (element) => {
+       new DevExpress.ui.dxDataGrid(element, {
+        height: 500,
+        dataSource: generateData(10000),
+        keyExpr: 'id',
+        showBorders: true,
+        scrolling: {
+          mode: 'virtual',
+        },
+         groupPanel: {
+           visible: true
+         },
+         headerFilter: {
+           visible: true
+         },
+         filterRow: {
+           visible: true
+         },
+         searchPanel: {
+           visible: true
+         }
+      });
+    };
+
+const root = document.querySelector('#container');
+root.attachShadow({ mode: 'open' });
+
+const shadowContainer = document.createElement('div');
+
+root.shadowRoot.appendChild(shadowContainer);
+
+createDataGrid(shadowContainer);
+  </script>
+</body>
+</html>
 
