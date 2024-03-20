@@ -31,10 +31,15 @@
         new DevExpress.ui.dxDataGrid(shadowDomContainer, {
             height: 500,
             dataSource: generateData(10000),
+            allowColumnReordering: true,
+            allowColumnResizing: true,
             keyExpr: 'id',
             showBorders: true,
             scrolling: {
               mode: 'virtual',
+            },
+            columnChooser: {
+                enabled: true
             },
             groupPanel: {
                 visible: true
